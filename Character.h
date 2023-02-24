@@ -7,6 +7,7 @@ public:
     Vector2 getWorldPos() { return worldPos; }
     void setScreenPos(int winWidth, int winHeight);
     void tick(float deltaTime);
+    void undoMovement();
 
 private:
     Texture2D texture{LoadTexture("characters/knight_idle_spritesheet.png")};
@@ -14,6 +15,7 @@ private:
     Texture2D run{LoadTexture("characters/knight_run_spritesheet.png")};
     Vector2 screenPos{};
     Vector2 worldPos{};
+    Vector2 worldPosLastFrame{};
     // 1 : facing right, value of -1 : facing left
     float rightLeft{1.f};
     // animation variables
