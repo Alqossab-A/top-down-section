@@ -1,3 +1,4 @@
+#include <string>
 #include "raylib.h"
 #include "raymath.h"
 #include "Character.h"
@@ -50,6 +51,19 @@ int main()
             prop.Render(knight.getWorldPos());
         };
 
+        if (!knight.getAlive()) // Character is not alive
+        {
+            DrawText("You Suck Bitch!", 45.f, 45.f, 40, RED);
+            EndDrawing();
+            continue;
+        }
+        else // Character is alive
+        {
+            std::string knightsHealth = "Health: ";
+            knightsHealth.append(std::to_string(knight.getHealth()), 0, 4);
+            DrawText(knightsHealth.c_str(), 55.f, 45.f, 40, RED);
+        };
+
         knight.tick(GetFrameTime());
         // check map bounds
         if (knight.getWorldPos().x < 0.f ||
@@ -58,7 +72,7 @@ int main()
             knight.getWorldPos().y + windowHeight > map.height * mapScale)
         {
             knight.undoMovement();
-        }
+        };
 
         // check prop collisions
         for (auto prop : props)
