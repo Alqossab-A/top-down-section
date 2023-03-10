@@ -13,4 +13,5 @@ public:
 private:
     Character* target;
     float damagePerSec{10.f};
+    float raidus{25.f};
 };
